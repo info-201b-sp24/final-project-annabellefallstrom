@@ -11,9 +11,9 @@ library(stringr)
 library(ggplot2)
 
 
-setwd("/Users/annabellefallstrom/Desktop/INFO201/SCRIPTS-2/DATA")
+climate_change <- read_excel("./D_FINAL.xlsx")
 
-climate_change <- read_tsv("D_FINAl.tsv")
+
 
 
   names(climate_change)[names(climate_change) == "Emissions Quality Flag (CDP)"] <- "emissions_quality_flag_cdp"

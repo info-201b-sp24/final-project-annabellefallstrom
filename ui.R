@@ -6,8 +6,29 @@ first_tab_panel <- tabPanel("First graph",
 )
 
 
-secont_tab_panel <- tabPanel("Second graph",
+second_tab_panel <- tabPanel("Second graph",
                              h1("TO DO: Add another graph here.")
+
+                             
+i <- fluidPage(
+  
+  # Application title
+  titlePanel('Search the world'),
+  
+  # Sidebar with a drop down box for city names
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(inputId = 'city_name',
+                  label = 'City to zoom in on:',
+                  choices = climate_change$city_name)
+    ),
+    
+    # Show the map
+    mainPanel(
+     leafletOutput('map')
+    )
+  )
+)
 )
 
 

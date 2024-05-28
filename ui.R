@@ -7,7 +7,7 @@ first_tab_panel <- tabPanel("First graph",
 
 
 second_tab_panel <- tabPanel("Second graph",
-                             h1("TO DO: Add another graph here.")
+                             h1("TO DO: Add another graph here."),
 
                              
 i <- fluidPage(

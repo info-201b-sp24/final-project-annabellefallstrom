@@ -14,7 +14,7 @@ intro_pg <- tabPanel(
 )
 
 # chart page 1
-cht1_pg <- tabPanel(
+chrt1_pg <- tabPanel(
   "Chart 1",
   titlePanel("Countries With the Highest Emissions"),
   
@@ -25,7 +25,7 @@ cht1_pg <- tabPanel(
 )
 
 # chart page 2
-cht2_pg <- tabPanel(
+chrt2_pg <- tabPanel(
   "Chart 2",
   titlePanel("Cities Mapped by Emissions Rating"),
   
@@ -36,19 +36,28 @@ cht2_pg <- tabPanel(
 )
 
 # chart page 3
-cht3_pg <- tabPanel(
+chrt3_pg <- tabPanel(
   "Chart 3",
   titlePanel("The Effect of Fuel Prices on Emissions"),
   
   mainPanel(
     h3("content area"),
     p("plots and details here"),
-    plotlyOutput("fuel_chart")
+    plotlyOutput("fuel_chart"),
+    radioButtons(
+      inputId = "fuel_selector",
+      label = "Fuel Type",
+      choices = list(
+        "Diesel" = 1,
+        "Gasoline" = 2
+      ),
+      selected = 2
+    )
   )
 )
 
 # conclusion page
-conc_pg <- tabPanel(
+concl_pg <- tabPanel(
   "Conclusion",
   titlePanel("Conclusion"),
   
@@ -61,8 +70,8 @@ conc_pg <- tabPanel(
 ui <- navbarPage(
   "Climate Change Analysis",
   intro_pg,
-  cht1_pg,
-  cht2_pg,
-  cht3_pg,
-  conc_pg
+  chrt1_pg,
+  chrt2_pg,
+  chrt3_pg,
+  concl_pg
 )

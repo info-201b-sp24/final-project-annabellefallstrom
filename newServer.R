@@ -19,19 +19,30 @@ server <- function(input, output) {
     ) %>%
     na.omit()
   
-  # get selected fuel based on ui
-  fuel <- if () {
-    select(fuel_data, 1)
-  }
-  
   # chart 3: gas / diesel prices vs emissions
   output$fuel_chart <- renderPlotly({
-    plot_ly(
+    # create diesel chart
+    diesel_chart <- plot_ly(
       data = fuel_data,
-      x = fuel,
+      x = ~ `Diesel price (GEA+) [USD/liter]`,
       y = ~ `Emissions per Person (CDP) [tCo2-eq]`,
-      type = "scatter"
-      
+      type = "scatter",
+      mode = "markers"
+    )
+    
+    # create diesel chart
+    gas_chart <- plot_ly(
+      data = fuel_data,
+      x = ~ `Gasoline price (GEA+) [USD/liter]`,
+      y = ~ `Emissions per Person (CDP) [tCo2-eq]`,
+      type = "scatter",
+      mode = "markers"
     ) 
+    
+    # return based on selection
+    if (input$fuel_selector == 1) {
+      return(diesel_chart)
+    }
+    return(gas_chart)
   })
 }

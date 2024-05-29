@@ -40,7 +40,17 @@ chrt1_pg <- tabPanel(
   
   mainPanel(
     h3("content area"),
-    p("plots and details here")
+    p("plots and details here"),
+    plotlyOutput("emissionsPlot")
+    radioButtons(
+      inputId = "emissions_selector",
+      label = "Emissions Type",
+      choices = list(
+        "Scope 1 GHG emissions" = 1,
+        "Total emissions (CDP)" = 2
+      ),
+      selected = 2
+    )
   )
 )
 

@@ -130,18 +130,26 @@ chrt1_pg <- tabPanel(
   titlePanel("Countries With the Highest Emissions"),
   
   mainPanel(
-    h3("content area"),
-    p("plots and details here"),
+    h3("Content Area"),
+    p("Plots and details here"),
     plotlyOutput("emissionsPlot"),
     radioButtons(
       inputId = "emissions_selector",
       label = "Emissions Type",
       choices = list(
-        "Scope 1 GHG emissions" = 1,
-        "Total emissions (CDP)" = 2
+        "Scope 1 GHG emissions" = "Scope1_Emissions",
+        "Total emissions (CDP)" = "Total_Emissions_CDP"
       ),
-      selected = 2
+      selected = "Total_Emissions_CDP"
     )
+  )
+)
+
+# Define the UI layout
+ui <- fluidPage(
+  navbarPage(
+    "Emissions Analysis",
+    chrt1_pg
   )
 )
 

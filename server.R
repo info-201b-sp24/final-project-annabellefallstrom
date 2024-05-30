@@ -211,29 +211,43 @@ climate_change <- data %>% rename(
   
   # chart 3: gas / diesel prices vs emissions
   output$fuel_chart <- renderPlotly({
-    # create diesel chart
-    diesel_chart <- plot_ly(
-      data = fuel_data,
-      x = ~ `Diesel price (GEA+) [USD/liter]`,
-      y = ~ `Emissions per Person (CDP) [tCo2-eq]`,
-      type = "scatter",
-      mode = "markers"
-    )
+    # create gas chart
+    gas_chart <- ggplot(
+      fuel_data,
+      aes(
+        x = `Gasoline price (GEA+) [USD/liter]`,
+        y = `Emissions per Person (CDP) [tCo2-eq]`)
+      ) +
+      geom_point(col = "darkseagreen") +
+      stat_smooth(method = lm, se = FALSE, color = "black") +
+      labs(
+        title = "Gasoline Price Vs Emissions",
+        x = "Gas Price (USD / Liter)",
+        y = "Average Emissions per Person (tCO2-eq)"
+      )
+    gas_chart <- ggplotly(gas_chart)
     
     # create diesel chart
-    gas_chart <- plot_ly(
-      data = fuel_data,
-      x = ~ `Gasoline price (GEA+) [USD/liter]`,
-      y = ~ `Emissions per Person (CDP) [tCo2-eq]`,
-      type = "scatter",
-      mode = "markers"
-    ) 
+    diesel_chart <- ggplot(
+      fuel_data,
+      aes(
+        x = `Diesel price (GEA+) [USD/liter]`,
+        y = `Emissions per Person (CDP) [tCo2-eq]`)
+    ) +
+      geom_point(col = "darkseagreen") +
+      stat_smooth(method = lm, se = FALSE, color = "black") +
+      labs(
+        title = "Diesel Price Vs Emissions",
+        x = "Diesel Price (USD / Liter)",
+        y = "Average Emissions per Person (tCO2-eq)"
+      )
+    diesel_chart <- ggplotly(diesel_chart)
     
     # return based on selection
     if (input$fuel_selector == 1) {
-      return(diesel_chart)
+      return(gas_chart)
     }
-    return(gas_chart)
+    return(diesel_chart)
   })
 }
 

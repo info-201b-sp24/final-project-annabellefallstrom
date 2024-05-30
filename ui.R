@@ -15,7 +15,7 @@ intro_pg <- tabPanel(
       "Brief Introduction",
       h4(
         "Climate change has become a global epidemic, with human activities
-         strongly impacting the Earth’s biodiversity, ecosystems, and,
+        strongly impacting the Earth’s biodiversity, ecosystems, and,
         ultimately, the atmosphere. This causes tremendous concerns as these
         climate changes negatively influence other important natural resources
         such as our terrestrial, oceanic, glaciological, and hydrological
@@ -128,7 +128,6 @@ intro_pg <- tabPanel(
 chrt1_pg <- tabPanel(
   "Chart 1",
   titlePanel("Countries With the Highest Emissions"),
-  
   mainPanel(
     h3("Content Area"),
     p("Plots and details here"),
@@ -140,28 +139,9 @@ chrt1_pg <- tabPanel(
         "Scope 1 GHG emissions" = "Scope1_Emissions",
         "Total emissions (CDP)" = "Total_Emissions_CDP"
       ),
-      selected = "Total_Emissions_CDP"
+      selected = "Total_Emissions_CDP",
+      class = "custom-radio-buttons"
     )
-  )
-)
-
-# Define the UI layout
-ui <- fluidPage(
-  # Custom CSS styles
-  tags$style(HTML("
-    .custom-title {
-      color: darkgreen;
-      font-size: 24px;
-      font-weight: bold;
-    }
-    .custom-radio-buttons .shiny-input-container {
-      margin-top: 20px;
-    }
-  ")),
-  
-  navbarPage(
-    "Emissions Analysis",
-    chrt1_pg
   )
 )
 
@@ -271,11 +251,44 @@ concl_pg <- tabPanel(
 )
 
 
-ui <- navbarPage(
-  "Climate Change Analysis",
-  intro_pg,
-  chrt1_pg,
-  chrt2_pg,
-  chrt3_pg,
-  concl_pg
+ui <- fluidPage(
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"),
+    tags$style(HTML("
+      body {
+        background-color: #f0f8f7;
+        color: #333;
+      }
+      .navbar-default {
+        background-color: #2e8b57;
+        border-color: #2e8b57;
+      }
+      .navbar-default .navbar-brand {
+        color: #fff;
+      }
+      .navbar-default .navbar-nav > li > a {
+        color: #fff;
+      }
+      .intro-text h4 {
+        color: #2e8b57;
+      }
+      .custom-section {
+        background-color: #e0f2f1;
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+      .custom-radio-buttons .shiny-input-container {
+        margin-top: 20px;
+      }
+    "))
+  ),
+  navbarPage(
+    "Climate Change Analysis",
+    intro_pg,
+    chrt1_pg,
+    chrt2_pg,
+    chrt3_pg,
+    concl_pg
+  )
 )

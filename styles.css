@@ -1,0 +1,33 @@
+body {
+    background-color: #f0f8f7;
+    color: #333;
+  }
+  
+  .navbar-default {
+    background-color: #2e8b57;
+    border-color: #2e8b57;
+  }
+  
+  .navbar-default .navbar-brand {
+    color: #fff;
+  }
+  
+  .navbar-default .navbar-nav > li > a {
+    color: #fff;
+  }
+  
+  .intro-text h4 {
+    color: #2e8b57;
+  }
+  
+  .custom-section {
+    background-color: #e0f2f1;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .custom-radio-buttons .shiny-input-container {
+    margin-top: 20px;
+  }
+  

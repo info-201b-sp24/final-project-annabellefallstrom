@@ -147,6 +147,18 @@ chrt1_pg <- tabPanel(
 
 # Define the UI layout
 ui <- fluidPage(
+  # Custom CSS styles
+  tags$style(HTML("
+    .custom-title {
+      color: darkgreen;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .custom-radio-buttons .shiny-input-container {
+      margin-top: 20px;
+    }
+  ")),
+  
   navbarPage(
     "Emissions Analysis",
     chrt1_pg

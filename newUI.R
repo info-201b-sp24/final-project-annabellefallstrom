@@ -57,13 +57,37 @@ chrt1_pg <- tabPanel(
 # chart page 2
 chrt2_pg <- tabPanel(
   "Chart 2",
-  titlePanel("Cities Mapped by Emissions Rating"),
+  titlePanel("Quality Flag Rating by City"),
   
-  mainPanel(
-    h3("content area"),
-    p("plots and details here")
+  # Sidebar with a drop down box for city names
+  sidebarLayout(
+    sidebarPanel(
+      img(src = "www/legend.jpg", height = "200px", width = "200px"),
+      
+      selectInput(inputId = 'city_name',
+                  label = 'City to zoom in on:',
+                  choices = c("", unique(climate_change$city_name)),
+                  selected = ""), # Set the default selection here
+      # The default option is an empty string to show the whole map
+      textOutput("dynamic_text") # Display dynamic text in the sidebar
+    ),
+    
+    # Show the map
+    mainPanel(
+      leafletOutput('map'),
+      uiOutput("legend") 
+    )
+  ),
+  
+  # Text generated dynamically from the server
+  fluidRow(
+    column(12,
+           div(
+             style = "padding: 20px; background-color: #f9f9f9; border-top: 1px solid #ddd;",
+             uiOutput("additional_info")  # Display the additional information text
+           )
+    )
   )
-)
 
 # chart page 3
 chrt3_pg <- tabPanel(

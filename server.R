@@ -54,7 +54,7 @@ server <- function(input, output) {
     ggplotly(gg_chart)
   })
 
-  output$additional_info <- renderUI({
+  output$additional_info_chrt1 <- renderUI({
   additional_info_text <- HTML("
     <h3>Countries and Emissions</h3>
     <p>
@@ -248,6 +248,41 @@ climate_change <- data %>% rename(
       return(gas_chart)
     }
     return(diesel_chart)
+  })
+  
+  output$chrt3_txt <- renderUI({
+    HTML("
+      <h3>
+        How does the cost of fossil fuels correlate to individuals' carbon
+        emissions?
+      </h3>
+      <p>
+        In order to better understand some of the potential factors of climate
+        change, we turned to one of the most well known sources of carbon
+        emissions: the burning of fossil fuels, specifically, gasoline and
+        diesel. We wondered if a lower price, and therefor easier to access for
+        the consumer, fuels would impact the rate at which the average person
+        produced CO2 polution.
+      </p>
+      <p>
+        For both fuels, gasoline and diesel, the chart appears to indicate that
+        a higher price correlates to lower carbon emissions for the average
+        person, meaning that price adjustment of such fuels might be a viable
+        way to encourage lower carbon emissions if this trend were to hold true.
+      </p>
+      <p>
+        Intuatively, this makes sense as a consumer, as you will be able to 
+        purchase more fuel to use when it is cheaper, so you are more likely to
+        buy a greater amount than when it is more expensive. In economics, this
+        would be considered the personal cost, as it is an explicit cost to the
+        buyer. This doesn't however take into consideration the cost that
+        society pays as consequence of things like global warming caused by such
+        consumption, the societal cost, so government intervention through
+        things like taxes can actually be beneficial by forcing consumers to
+        incur some of that societal cost, overall discouraging overconsumption
+        and combatting effects like climate change.
+      </p>
+    ")
   })
 }
 

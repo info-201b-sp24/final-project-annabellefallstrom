@@ -54,6 +54,23 @@ server <- function(input, output) {
     ggplotly(gg_chart)
   })
 
+  output$additional_info <- renderUI({
+  additional_info_text <- HTML("
+    <h3>Countries and Emissions</h3>
+    <p>
+      This bar chart shows the top 7 countries with the highest CO2 emissions, singled out from the large dataset. 
+      The chart reveals the countries that are the biggest contributors to CO2 emissions.
+      Scope-1 GHG emissions are emissions from sources that are owned or controlled by the reporting entity.
+      Total emissions (CDP) are the total emissions reported by the entity to the Carbon Disclosure Project (CDP).
+    </p>
+    
+    <p>
+      To best use this resource, select the type of emissions you are interested in analyzing. 
+      The chart will then show the top 7 countries with the highest emissions in that category.
+    </p>
+  ")
+  additional_info_text
+})
 
 ### CHART 2 ###
 climate_change <- data %>% rename(
